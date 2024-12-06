@@ -20,17 +20,13 @@ public class LogSpawner : MonoBehaviour
         {
 Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
-            // Spawn kayu
             GameObject log = Instantiate(logPrefab, spawnPoint.position, spawnPoint.rotation);
 
-            // Menambahkan skrip penggerak kayu
             LogMover logMover = log.AddComponent<LogMover>();
             logMover.speed = logSpeed;
 
-            // Secara acak atur arah pergerakan (true untuk ke kiri, false untuk ke kanan)
             logMover.moveLeft = Random.Range(0, 2) == 0;
 
-            // Tunggu interval sebelum spawn berikutnya
             yield return new WaitForSeconds(spawnInterval);
         }
     }
