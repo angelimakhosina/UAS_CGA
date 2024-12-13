@@ -6,8 +6,9 @@ public class LogSpawner : MonoBehaviour
 {
     public GameObject logPrefab; 
     public Transform[] spawnPoints; 
-    public float spawnInterval = 0.5f;
-    public float logSpeed = 3f; 
+    public float spawnInterval = 1.5f; // Interval spawn
+    public float minLogSpeed = 1f;     // Kecepatan minimum
+    public float maxLogSpeed = 3f;     // Kecepatan maksimum
 
     void Start()
     {
@@ -18,16 +19,23 @@ public class LogSpawner : MonoBehaviour
     {
         while (true)
         {
-Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            // Pilih spawn point secara acak
+            Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
+            // Spawn log dari prefab
             GameObject log = Instantiate(logPrefab, spawnPoint.position, spawnPoint.rotation);
 
+            // Tambahkan script LogMover untuk menggerakkan log
             LogMover logMover = log.AddComponent<LogMover>();
-            logMover.speed = logSpeed;
+            logMover.speed = Random.Range(minLogSpeed, maxLogSpeed); // Kecepatan random
 
-            logMover.moveLeft = Random.Range(0, 2) == 0;
+            // Tentukan arah gerak log berdasarkan posisi X
+            float logPositionX = log.transform.position.x;
 
-            yield return new WaitForSeconds(spawnInterval);
+            // Jika posisi X < 0, bergerak ke kanan, jika posisi X > 0, bergerak ke kiri
+            logMover.moveLeft = logPositionX > 0; // Arahkan ke kiri jika berada di posisi positif
+
+            yield return new WaitForSeconds(spawnInterval); // Tunggu sesuai interval spawn
         }
     }
 }
