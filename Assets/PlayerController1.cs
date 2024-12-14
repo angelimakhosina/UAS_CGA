@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController2 : MonoBehaviour
 {
     public float jumpForce = 2f; // The force of the jump
     public float moveForce = 2f; // The force for moving in the direction
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
 
         // Allow jumping only when grounded and cooldown has passed
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space) && canJump)
+        if (isGrounded && Input.GetKeyDown(KeyCode.Return) && canJump) // Use Enter key for Player 2's jump
         {
             Jump(Vector3.up); // Default vertical jump
             StartCooldown();
@@ -34,22 +34,22 @@ public class PlayerController : MonoBehaviour
         // Handle directional jumps when in the air (not grounded)
         if (!isGrounded && canJump)
         {
-            if (Input.GetKeyDown(KeyCode.Space)) // Forward
+            if (Input.GetKeyDown(KeyCode.Q)) // Forward
             {
                 Jump(Vector3.forward);
                 StartCooldown();
             }
-            else if (Input.GetKeyDown(KeyCode.Q)) // Backward
+            else if (Input.GetKeyDown(KeyCode.Space)) // Backward
             {
                 Jump(Vector3.back);
                 StartCooldown();
             }
-            else if (Input.GetKeyDown(KeyCode.A)) // Left (Sideways)
+            else if (Input.GetKeyDown(KeyCode.LeftArrow)) // Left
             {
                 Jump(Vector3.left);
                 StartCooldown();
             }
-            else if (Input.GetKeyDown(KeyCode.D)) // Right (Sideways)
+            else if (Input.GetKeyDown(KeyCode.RightArrow)) // Right
             {
                 Jump(Vector3.right);
                 StartCooldown();
