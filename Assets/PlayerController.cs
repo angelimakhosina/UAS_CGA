@@ -12,15 +12,22 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private bool canJump = true; // Flag to control jump spamming
     private float lastJumpTime;
+    private GameManager gameManager;
+
+    private bool isFinished = false; // New flag to stop movement after finish
 
     void Start()
     {
         // Get the Rigidbody component attached to the object
         rb = GetComponent<Rigidbody>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
     {
+        // If finished, prevent all movements
+        if (isFinished) return;
+
         // Check if the object is grounded
         isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
 
@@ -76,4 +83,22 @@ public class PlayerController : MonoBehaviour
         lastJumpTime = Time.time; // Record the time of the last jump
         canJump = false; // Prevent further jumps
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("FinishLine")) // Periksa apakah katak menyentuh finish line
+        {
+            isFinished = true; // Hentikan semua pergerakan
+            rb.velocity = Vector3.zero; // Hentikan gerakan fisika
+            rb.angularVelocity = Vector3.zero; // Hentikan rotasi fisika
+            Debug.Log("Katak 1 telah mencapai garis finish!");
+            
+            if (gameManager != null)
+            {
+                gameManager.FrogFinished(); // Laporkan ke GameManager
+            }
+        }
+
+    }
+
 }

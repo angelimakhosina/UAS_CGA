@@ -5,9 +5,10 @@ using UnityEngine;
 public class LogSpawner : MonoBehaviour
 {
     public GameObject logPrefab; 
-    public Transform[] spawnPoints; 
-    public float spawnInterval = 0.5f;
-    public float logSpeed = 3f; 
+    public Transform[] spawnPoints; // Titik spawn log
+    public float spawnInterval = 0.5f; // Interval waktu spawn
+    public float logSpeed = 3f; // Kecepatan log
+    public float logLifetime = 10f; // Waktu hidup log
 
     void Start()
     {
@@ -18,15 +19,23 @@ public class LogSpawner : MonoBehaviour
     {
         while (true)
         {
-Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            // Pilih titik spawn secara acak
+            Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
+            // Spawn log di titik spawn
             GameObject log = Instantiate(logPrefab, spawnPoint.position, spawnPoint.rotation);
 
+            // Tambahkan LogMover ke log dan atur properti
             LogMover logMover = log.AddComponent<LogMover>();
             logMover.speed = logSpeed;
 
-            logMover.moveLeft = Random.Range(0, 2) == 0;
+            // Tentukan arah berdasarkan posisi spawn
+            logMover.moveLeft = spawnPoint.position.x > 0; // Jika spawn di kanan, bergerak ke kiri
 
+            // Tentukan waktu log dihancurkan
+            logMover.lifetime = logLifetime;
+
+            // Tunggu sebelum spawn log berikutnya
             yield return new WaitForSeconds(spawnInterval);
         }
     }
