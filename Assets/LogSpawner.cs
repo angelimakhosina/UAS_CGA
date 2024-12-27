@@ -9,6 +9,7 @@ public class LogSpawner : MonoBehaviour
     public float spawnInterval = 1f; // Interval spawn
     public float minLogSpeed = 1f;     // Kecepatan minimum
     public float maxLogSpeed = 3f;     // Kecepatan maksimum
+    public float startDelay = 3f;
 
     void Start()
     {
@@ -17,6 +18,8 @@ public class LogSpawner : MonoBehaviour
 
     IEnumerator SpawnLogs()
     {
+        yield return new WaitForSeconds(startDelay);
+
         while (true)
         {
             // Pilih spawn point secara acak
