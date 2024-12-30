@@ -6,8 +6,7 @@ public class LogSpawner : MonoBehaviour
 {
     public GameObject logPrefab; 
     public Transform[] spawnPoints; 
-    public float spawnInterval = 0.5f;
-    public float logSpeed = 3f; 
+    public float spawnInterval = 0.5f; // Interval spawn
 
     void Start()
     {
@@ -18,20 +17,40 @@ public class LogSpawner : MonoBehaviour
     {
         while (true)
         {
-Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            // Pilih spawn point secara acak
+            Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
-            // Spawn kayu
+            // Spawn log dari prefab
             GameObject log = Instantiate(logPrefab, spawnPoint.position, spawnPoint.rotation);
 
-            // Menambahkan skrip penggerak kayu
+            // Tambahkan script LogMover untuk menggerakkan log
             LogMover logMover = log.AddComponent<LogMover>();
-            logMover.speed = logSpeed;
+            logMover.speed = 3f; // Set constant speed
 
-            // Secara acak atur arah pergerakan (true untuk ke kiri, false untuk ke kanan)
-            logMover.moveLeft = Random.Range(0, 2) == 0;
+            // Tentukan arah gerak log berdasarkan posisi X
+            float logPositionX = log.transform.position.x;
 
-            // Tunggu interval sebelum spawn berikutnya
-            yield return new WaitForSeconds(spawnInterval);
+            // Jika posisi X < 0, bergerak ke kanan, jika posisi X > 0, bergerak ke kiri
+            logMover.moveLeft = logPositionX > 0; // Arahkan ke kiri jika berada di posisi positif
+
+            // Ubah warna log untuk day mode (kecerahan normal)
+            SetNormalColor(log);
+
+            Destroy(log, 25f);
+
+            yield return new WaitForSeconds(spawnInterval); // Tunggu sesuai interval spawn
+        }
+    }
+
+    void SetNormalColor(GameObject log)
+    {
+        // Ambil semua renderer di log
+        Renderer[] renderers = log.GetComponentsInChildren<Renderer>();
+        foreach (Renderer renderer in renderers)
+        {
+            // Set warna normal (jika ingin kecerahan tetap)
+            Color originalColor = renderer.material.color;
+            renderer.material.color = originalColor; // Tidak mengubah kecerahan, tetap dengan warna asli
         }
     }
 }
