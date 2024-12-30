@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarSpawner : MonoBehaviour
+public class NightCarSpawner : MonoBehaviour
 {
     public GameObject carPrefab; 
     public Transform[] spawnPoints; 

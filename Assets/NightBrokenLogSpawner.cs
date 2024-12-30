@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BrokenLogSpawner : MonoBehaviour
+public class NightBrokenLogSpawner : MonoBehaviour
 {
     public GameObject logPrefab; 
     public Transform[] spawnPoints; 
