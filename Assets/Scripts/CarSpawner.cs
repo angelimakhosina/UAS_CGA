@@ -8,6 +8,7 @@ public class CarSpawner : MonoBehaviour
     public Transform[] spawnPoints; 
     public float spawnInterval = 0.5f;
     public float carSpeed = 5f; 
+    public float startDelay = 3f;
 
     void Start()
     {
@@ -16,6 +17,8 @@ public class CarSpawner : MonoBehaviour
 
     IEnumerator SpawnCars()
     {
+        yield return new WaitForSeconds(startDelay);
+
         while (true)
         {
             Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
