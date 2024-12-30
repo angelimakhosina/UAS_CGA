@@ -654,7 +654,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 119782569}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bba85bad4f31764c9734f81c80edfc0, type: 3}
+  m_Script: {fileID: 11500000, guid: a0ee6f9e38eace046a9c78018b13cbe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   carPrefab: {fileID: 1646981259178978, guid: f463242ba59e68243b7a693d4f0cfc18, type: 3}
@@ -5703,8 +5703,6 @@ MonoBehaviour:
   - {fileID: 2145561802}
   - {fileID: 1201271699}
   spawnInterval: 1
-  logSpeed: 2
-  logLifetime: 60
 --- !u!1001 &1809657508
 PrefabInstance:
   m_ObjectHideFlags: 0
