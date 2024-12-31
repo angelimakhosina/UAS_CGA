@@ -4,7 +4,7 @@ public class LogMover : MonoBehaviour
 {
     public float speed = 3f; // Kecepatan log
     public bool moveLeft = true; // Arah awal
-    public float lifetime = 10f; // Waktu sebelum log dihancurkan
+    public float lifetime = 1000f; // Waktu sebelum log dihancurkan
 
     void Start()
     {
@@ -23,7 +23,12 @@ public class LogMover : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player")) // Jika katak menyentuh log
         {
-            collision.transform.SetParent(transform); // Jadikan log sebagai parent katak
+            Transform playerTransform = collision.transform;
+
+            // Pastikan transformasi global tetap saat menjadi parent
+            playerTransform.SetParent(transform, true); 
+
+            Debug.Log("Katak menjadi child dari log.");
         }
     }
 
@@ -31,7 +36,27 @@ public class LogMover : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player")) // Jika katak meninggalkan log
         {
-            collision.transform.SetParent(null); // Lepaskan parent log dari katak
+            Transform playerTransform = collision.transform;
+
+            // Lepaskan parent dan pastikan objek tidak null
+            if (playerTransform != null)
+            {
+                playerTransform.SetParent(null, true);
+                Debug.Log("Katak dilepaskan dari log.");
+            }
+        }
+    }
+
+    void OnDestroy()
+    {
+        // Lepaskan semua child sebelum log dihancurkan
+        foreach (Transform child in transform)
+        {
+            if (child != null)
+            {
+                child.SetParent(null, true);
+                // Debug.Log($"Child {child.name} dilepaskan karena log dihancurkan.");
+            }
         }
     }
 }

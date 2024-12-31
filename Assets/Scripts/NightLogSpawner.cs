@@ -36,7 +36,7 @@ public class NightLogSpawner : MonoBehaviour
             // Ubah warna log untuk day mode (kecerahan normal)
             SetNormalColor(log);
 
-            Destroy(log, 25f);
+            Destroy(log, 1000f);
 
             yield return new WaitForSeconds(spawnInterval); // Tunggu sesuai interval spawn
         }
