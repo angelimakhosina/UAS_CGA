@@ -601,37 +601,6 @@ MonoBehaviour:
   - {fileID: 1437695566}
   spawnInterval: 1.5
   brokenLogProbability: 0.5
---- !u!1 &130268197
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 130268199}
-  m_Layer: 0
-  m_Name: LogSpawnManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &130268199
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 130268197}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.245424, y: 0.8542795, z: 9.268034}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &165300517
 GameObject:
   m_ObjectHideFlags: 0
@@ -9026,4 +8995,3 @@ SceneRoots:
   - {fileID: 220255857}
   - {fileID: 1262241178}
   - {fileID: 2078280114}
-  - {fileID: 130268199}
