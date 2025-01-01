@@ -4,55 +4,30 @@ using UnityEngine;
 
 public class NightBrokenLogSpawner : MonoBehaviour
 {
-    public GameObject logPrefab; 
-    public Transform[] spawnPoints; 
-    public float spawnInterval = 0.5f; // Interval spawn
+    public GameObject logPrefab;
+    public Transform[] spawnPoints;
 
-    void Start()
+    public void SpawnLogOnce()
     {
-        StartCoroutine(SpawnLogs());
-    }
+        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        GameObject log = Instantiate(logPrefab, spawnPoint.position, spawnPoint.rotation);
 
-    IEnumerator SpawnLogs()
-    {
-        while (true)
-        {
-            // Choose a random spawn point
-            Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        LogMover logMover = log.AddComponent<LogMover>();
+        logMover.speed = 3f;
+        logMover.moveLeft = log.transform.position.x > 0;
 
-            // Instantiate the log
-            GameObject log = Instantiate(logPrefab, spawnPoint.position, spawnPoint.rotation);
-
-            // Add movement behavior
-            LogMover logMover = log.AddComponent<LogMover>();
-            logMover.speed = 3f; // Set constant speed
-
-            // Determine the movement direction based on X position
-            float logPositionX = log.transform.position.x;
-            logMover.moveLeft = logPositionX > 0;
-
-            // Apply normal color
-            SetNormalColor(log);
-
-            // Always make the log fall after a random time
-            StartCoroutine(HandleLogFall(log));
-
-            // Destroy the log after 25 seconds if it doesn't break
-            Destroy(log, 25f);
-
-            yield return new WaitForSeconds(spawnInterval);
-        }
+        SetNormalColor(log);
+        StartCoroutine(HandleLogFall(log));
+        Destroy(log, 50f);
     }
 
     void SetNormalColor(GameObject log)
     {
-        // Get all renderers in the log
         Renderer[] renderers = log.GetComponentsInChildren<Renderer>();
         foreach (Renderer renderer in renderers)
         {
-            // Set normal color (keep original brightness)
             Color originalColor = renderer.material.color;
-            renderer.material.color = originalColor; // Keep the original color
+            renderer.material.color = originalColor;
         }
     }
 
@@ -88,23 +63,5 @@ public class NightBrokenLogSpawner : MonoBehaviour
         // Optional: Add visual effects for breaking (e.g., particles)
         // Destroy the log
         Destroy(log);
-    }
-
-    public class LogMover : MonoBehaviour
-    {
-        public float speed = 1f;
-        public bool moveLeft = false;
-
-        void Update()
-        {
-            if (moveLeft)
-            {
-                transform.position += Vector3.left * speed * Time.deltaTime;
-            }
-            else
-            {
-                transform.position += Vector3.right * speed * Time.deltaTime;
-            }
-        }
     }
 }

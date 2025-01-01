@@ -8,4 +8,9 @@ public class MenuController : MonoBehaviour
         // Ganti dengan nama scene level easy Anda
         SceneManager.LoadScene("LevelEasy");
     }
+
+    public void OnHardButtonClicked()
+    {
+        SceneManager.LoadScene("LevelHard");
+    }
 }
