@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerController1 : MonoBehaviour
 {
-    public float jumpForce = 2f; // The force of the jump
+    public float jumpForce = 2.5f; // The force of the jump
     public float moveForce = 2f; // The force for moving in the direction
     public float groundCheckDistance = 0.1f; // The distance to check for the ground
     public LayerMask groundLayer; // Layer of the ground to check collision

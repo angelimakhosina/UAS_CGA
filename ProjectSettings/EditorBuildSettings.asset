@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/LevelEasy.unity
     guid: b2f2933b618f99b48b7bdf055be113a0
+  - enabled: 1
+    path: Assets/Game.unity
+    guid: 50e7fba8ec93f7547a9c2531c24afb17
+  - enabled: 1
+    path: Assets/LevelHard.unity
+    guid: f091db185262a8c4b840adb0599d59a1
   m_configObjects: {}
