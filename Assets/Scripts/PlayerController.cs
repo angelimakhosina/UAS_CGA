@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
                 Jump(Vector3.forward);
                 StartCooldown();
             }
-            else if (Input.GetKeyDown(KeyCode.Q)) // Backward
+            else if (Input.GetKeyDown(KeyCode.S)) // Backward
             {
                 Jump(Vector3.back);
                 StartCooldown();

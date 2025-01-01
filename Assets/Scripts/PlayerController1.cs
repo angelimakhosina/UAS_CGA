@@ -41,7 +41,7 @@ public class PlayerController1 : MonoBehaviour
         // Handle directional jumps when in the air (not grounded)
         if (!isGrounded && canJump)
         {
-            if (Input.GetKeyDown(KeyCode.Q)) // Forward
+            if (Input.GetKeyDown(KeyCode.S)) // Forward
             {
                 Jump(Vector3.forward);
                 StartCooldown();
