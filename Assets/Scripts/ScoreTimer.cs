@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using TMPro; // Untuk TMP_Text
 
 public class ScoreTimer : MonoBehaviour
 {
