@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections; // Untuk coroutine
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb;
     private bool isGrounded;
-    private bool canJump = true; // Flag to control jump spamming
+    private bool canJump = false; // Initially false, will be set to true after 3 seconds
+    private bool canMove = false; // Flag to control whether the frog can move
     private float lastJumpTime;
     private GameManager gameManager;
 
@@ -21,6 +23,18 @@ public class PlayerController : MonoBehaviour
         // Get the Rigidbody component attached to the object
         rb = GetComponent<Rigidbody>();
         gameManager = FindObjectOfType<GameManager>();
+
+        // Start the coroutine to delay the start of the game
+        StartCoroutine(DelayGameStart()); 
+    }
+
+    // Coroutine to delay the game and player's movement for 3 seconds
+    IEnumerator DelayGameStart()
+    {
+        yield return new WaitForSeconds(3f); // Wait for 3 seconds
+        canJump = true; // Allow jumping after 3 seconds
+        canMove = true; // Allow movement after 3 seconds
+        Debug.Log("Lompat dan bergerak sudah bisa setelah 3 detik!");
     }
 
     void Update()
@@ -28,10 +42,13 @@ public class PlayerController : MonoBehaviour
         // If finished, prevent all movements
         if (isFinished) return;
 
+        // If the player can't move, don't process any input
+        if (!canMove) return;
+
         // Check if the object is grounded
         isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
 
-        // Allow jumping only when grounded and cooldown has passed
+        // Allow jumping only when grounded and cooldown has passed, and after 3 seconds
         if (isGrounded && Input.GetKeyDown(KeyCode.Space) && canJump)
         {
             Jump(Vector3.up); // Default vertical jump
@@ -79,8 +96,6 @@ public class PlayerController : MonoBehaviour
         canJump = false; // Disable jumping until cooldown is over
     }
 
-
-
     void StartCooldown()
     {
         lastJumpTime = Time.time; // Record the time of the last jump
@@ -101,7 +116,5 @@ public class PlayerController : MonoBehaviour
                 gameManager.FrogFinished(); // Laporkan ke GameManager
             }
         }
-
     }
-
 }

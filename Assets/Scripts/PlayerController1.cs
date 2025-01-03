@@ -7,6 +7,7 @@ public class PlayerController1 : MonoBehaviour
     public float groundCheckDistance = 0.1f; // The distance to check for the ground
     public LayerMask groundLayer; // Layer of the ground to check collision
     public float jumpCooldown = 0.5f; // Cooldown time for jumping
+    public float startDelay = 3f; // Delay time before player can move
 
     private Rigidbody rb;
     private bool isGrounded;
@@ -15,18 +16,25 @@ public class PlayerController1 : MonoBehaviour
     private GameManager gameManager;
 
     private bool isFinished = false; // New flag to stop movement after finish
+    private float startTime; // Variable to track time since the start
 
     void Start()
     {
         // Get the Rigidbody component attached to the object
         rb = GetComponent<Rigidbody>();
         gameManager = FindObjectOfType<GameManager>();
+
+        // Store the start time to track the 3-second delay
+        startTime = Time.time;
     }
 
     void Update()
     {
         // If finished, prevent all movements
         if (isFinished) return;
+
+        // Check if 3 seconds have passed since the start
+        if (Time.time - startTime < startDelay) return; // Prevent movement during the delay
 
         // Check if the object is grounded
         isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
@@ -85,7 +93,7 @@ public class PlayerController1 : MonoBehaviour
         canJump = false; // Prevent further jumps
     }
 
-        private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("FinishLine1")) // Periksa apakah katak menyentuh finish line
         {

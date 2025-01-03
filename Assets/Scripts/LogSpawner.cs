@@ -12,6 +12,17 @@ public class LogSpawner : MonoBehaviour
 
     void Start()
     {
+        // Panggil coroutine untuk delay 3 detik sebelum mulai spawning
+        StartCoroutine(StartSpawningWithDelay());
+    }
+
+    // Coroutine untuk delay 3 detik sebelum mulai spawning log
+    IEnumerator StartSpawningWithDelay()
+    {
+        // Tunggu selama 3 detik
+        yield return new WaitForSeconds(3f);
+
+        // Setelah 3 detik, mulai spawn logs
         StartCoroutine(SpawnLogs());
     }
 
