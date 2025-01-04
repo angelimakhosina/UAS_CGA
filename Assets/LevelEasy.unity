@@ -2309,9 +2309,7 @@ GameObject:
   - component: {fileID: 417624603}
   - component: {fileID: 417624606}
   - component: {fileID: 417624605}
-  - component: {fileID: 417624604}
   - component: {fileID: 417624607}
-  - component: {fileID: 417624608}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -2346,21 +2344,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &417624604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 417624602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 008212317e247d84992ec77a2579a8e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentTimeText: {fileID: 1722012510}
-  bestTimeText: {fileID: 295488056}
-  startDelay: 3
 --- !u!114 &417624605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2413,24 +2396,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 1273106489}
   pauseButton: {fileID: 320713878}
---- !u!114 &417624608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 417624602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dce0ee254775dbe42ba0e47eba541e53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  totalFrogs: 2
-  maxLives: 30
-  scoreTimer: {fileID: 0}
-  gameOverText: {fileID: 1447276863}
-  gameWonText: {fileID: 1344197310}
-  backToMenuButton: {fileID: 341793080}
 --- !u!1001 &463921594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6837,6 +6802,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1273106489}
   m_CullTransparentMesh: 1
+--- !u!1 &1297410212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1297410214}
+  - component: {fileID: 1297410213}
+  m_Layer: 0
+  m_Name: TimeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1297410213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297410212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 008212317e247d84992ec77a2579a8e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTimeText: {fileID: 1722012510}
+  bestTimeText: {fileID: 295488056}
+  startDelay: 3
+--- !u!4 &1297410214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297410212}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.088893816, y: 13.668735, z: 6.1900334}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1310281022 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 290663368481716228, guid: 28a69432604101f4e8b2e93b7d82201d, type: 3}
@@ -6956,7 +6968,6 @@ GameObject:
   - component: {fileID: 1344197309}
   - component: {fileID: 1344197311}
   - component: {fileID: 1344197310}
-  - component: {fileID: 1344197312}
   m_Layer: 5
   m_Name: GameWonText
   m_TagString: Untagged
@@ -7080,24 +7091,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1344197308}
   m_CullTransparentMesh: 1
---- !u!114 &1344197312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1344197308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dce0ee254775dbe42ba0e47eba541e53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  totalFrogs: 2
-  maxLives: 3
-  scoreTimer: {fileID: 0}
-  gameOverText: {fileID: 0}
-  gameWonText: {fileID: 0}
-  backToMenuButton: {fileID: 0}
 --- !u!1 &1344499853
 GameObject:
   m_ObjectHideFlags: 0
@@ -7144,7 +7137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalFrogs: 2
   maxLives: 30
-  scoreTimer: {fileID: 0}
+  scoreTimer: {fileID: 1297410213}
   gameOverText: {fileID: 1447276863}
   gameWonText: {fileID: 1344197310}
   backToMenuButton: {fileID: 341793080}
@@ -11751,11 +11744,12 @@ SceneRoots:
   - {fileID: 1377476266}
   - {fileID: 1976434667}
   - {fileID: 787147088}
-  - {fileID: 1344499855}
   - {fileID: 1800630406}
   - {fileID: 2131862968}
   - {fileID: 684321995}
   - {fileID: 690186947}
   - {fileID: 1373797103}
   - {fileID: 2019051747}
+  - {fileID: 1344499855}
+  - {fileID: 1297410214}
   - {fileID: 1543665683}

@@ -2,22 +2,22 @@ using System.Collections;
 using UnityEngine;
 using TMPro; // Untuk TMP_Text
 
-public class ScoreTimer : MonoBehaviour
+public class ScoreTimerHard : MonoBehaviour
 {
-    public TMP_Text currentTimeText; // Untuk menampilkan waktu saat ini
-    public TMP_Text bestTimeText;    // Untuk menampilkan waktu terbaik
+    public TMP_Text currentTimeTextHard; // Untuk menampilkan waktu saat ini
+    public TMP_Text bestTimeTextHard;    // Untuk menampilkan waktu terbaik
 
     private float timer = 0f;        // Waktu berjalan
     private bool isRunning = false; // Status timer
-    private float bestTime = Mathf.Infinity; // Waktu terbaik, dimulai dari nilai besar
+    private float bestTimeHard = Mathf.Infinity; // Waktu terbaik, dimulai dari nilai besar
     public float startDelay = 3f;   // Waktu delay sebelum timer dimulai
 
     void Start()
     {
         // Muat best time yang sebelumnya disimpan (jika ada)
-        if (PlayerPrefs.HasKey("BestTime"))
+        if (PlayerPrefs.HasKey("BestTimeHard"))
         {
-            bestTime = PlayerPrefs.GetFloat("BestTime");
+            bestTimeHard = PlayerPrefs.GetFloat("BestTimeHard");
             UpdateBestTimeUI();
         }
     }
@@ -50,12 +50,12 @@ public class ScoreTimer : MonoBehaviour
         isRunning = false;
 
         // Periksa apakah skor saat ini lebih baik (lebih pendek) daripada best time
-        if (timer < bestTime)
+        if (timer < bestTimeHard)
         {
-            bestTime = timer;
+            bestTimeHard = timer;
 
             // Simpan waktu terbaik ke PlayerPrefs
-            PlayerPrefs.SetFloat("BestTime", bestTime);
+            PlayerPrefs.SetFloat("BestTimeHard", bestTimeHard);
             PlayerPrefs.Save();
 
             // Perbarui UI waktu terbaik
@@ -68,12 +68,12 @@ public class ScoreTimer : MonoBehaviour
     private void UpdateCurrentTimeUI()
     {
         // Tampilkan waktu berjalan (format: detik dengan 2 desimal)
-        currentTimeText.text = $"Current Time: {timer:F2} s";
+        currentTimeTextHard.text = $"Current Time: {timer:F2} s";
     }
 
     private void UpdateBestTimeUI()
     {
         // Tampilkan waktu terbaik (format: detik dengan 2 desimal)
-        bestTimeText.text = $"Best Time: {bestTime:F2} s";
+        bestTimeTextHard.text = $"Best Time: {bestTimeHard:F2} s";
     }
 }
