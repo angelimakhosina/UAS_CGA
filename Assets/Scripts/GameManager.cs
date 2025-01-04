@@ -61,41 +61,37 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Game Over! Tidak ada nyawa tersisa.");
         Time.timeScale = 0; // Pause game
-        Debug.Log("tampilan gameover muncul ges.");
+
+        // Aktifkan UI Game Over
         if (gameOverText != null) gameOverText.gameObject.SetActive(true);
         if (backToMenuButton != null) backToMenuButton.SetActive(true);
-        scoreTimer.StopTimer(); // Hentikan timer
-
     }
 
     private void GameWon()
-{
-    Debug.Log("Memanggil GameWon(). Semua katak telah mencapai garis finish!");
-    Time.timeScale = 0; // Pause the game
-    if (gameWonText == null)
     {
-        Debug.LogError("GameWonText tidak ditemukan! Pastikan dihubungkan di Inspector.");
-        return;
-    }
+        Debug.Log("Memanggil GameWon(). Semua katak telah mencapai garis finish!");
+        Time.timeScale = 0; // Pause game
 
-    if (!gameWonText.gameObject.activeInHierarchy)
-    {
-        Debug.Log("GameWonText saat ini tidak aktif di Hierarchy. Mengaktifkannya sekarang...");
-        gameWonText.gameObject.SetActive(true); // Aktifkan GameObject
-    }
-    else
-    {
-        Debug.Log("GameWonText sudah aktif.");
-    }
+        // Aktifkan UI Game Won
+        if (gameWonText != null)
+        {
+            gameWonText.gameObject.SetActive(true); // Aktifkan teks "Game Won"
+        }
+        if (backToMenuButton != null)
+        {
+            backToMenuButton.SetActive(true); // Tampilkan tombol kembali
+        }
 
-    if (backToMenuButton != null)
-    {
-        backToMenuButton.SetActive(true);
+        // Hentikan timer dan periksa best time
+        if (scoreTimer != null)
+        {
+            scoreTimer.StopTimer(); // Stop dan simpan best time jika lebih baik
+        }
+        else
+        {
+            Debug.LogError("ScoreTimer belum dihubungkan di Inspector!");
+        }
     }
-    scoreTimer.StopTimer(); // Hentikan timer
-
-}
-
 
     public void BackToMenu()
     {
