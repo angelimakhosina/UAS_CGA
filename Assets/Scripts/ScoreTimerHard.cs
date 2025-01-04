@@ -6,11 +6,14 @@ public class ScoreTimerHard : MonoBehaviour
 {
     public TMP_Text currentTimeTextHard; // Untuk menampilkan waktu saat ini
     public TMP_Text bestTimeTextHard;    // Untuk menampilkan waktu terbaik
+    public TMP_Text livesLeftTextHard;   // Untuk menampilkan jumlah nyawa tersisa
 
     private float timer = 0f;        // Waktu berjalan
     private bool isRunning = false; // Status timer
     private float bestTimeHard = Mathf.Infinity; // Waktu terbaik, dimulai dari nilai besar
     public float startDelay = 3f;   // Waktu delay sebelum timer dimulai
+
+    public GameManagerHard gameManagerHard; // Referensi ke GameManager
 
     void Start()
     {
@@ -20,6 +23,9 @@ public class ScoreTimerHard : MonoBehaviour
             bestTimeHard = PlayerPrefs.GetFloat("BestTimeHard");
             UpdateBestTimeUI();
         }
+
+        // Perbarui jumlah nyawa pada UI
+        UpdateLivesLeftUI();
     }
 
     void Update()
@@ -30,6 +36,9 @@ public class ScoreTimerHard : MonoBehaviour
             timer += Time.deltaTime;
             UpdateCurrentTimeUI();
         }
+
+        // Perbarui nyawa secara real-time
+        UpdateLivesLeftUI();
     }
 
     public void StartTimer()
@@ -75,5 +84,21 @@ public class ScoreTimerHard : MonoBehaviour
     {
         // Tampilkan waktu terbaik (format: detik dengan 2 desimal)
         bestTimeTextHard.text = $"Best Time: {bestTimeHard:F2} s";
+    }
+
+    private void UpdateLivesLeftUI()
+    {
+        if (gameManagerHard != null)
+        {
+            // Ambil jumlah nyawa dari GameManager
+            int currentLives = gameManagerHard.GetCurrentLives();
+
+            // Perbarui teks nyawa tersisa pada UI
+            livesLeftTextHard.text = $"Lives Left: {currentLives}";
+        }
+        else
+        {
+            Debug.LogError("GameManager belum dihubungkan di Inspector!");
+        }
     }
 }

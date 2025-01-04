@@ -6,11 +6,14 @@ public class ScoreTimer : MonoBehaviour
 {
     public TMP_Text currentTimeText; // Untuk menampilkan waktu saat ini
     public TMP_Text bestTimeText;    // Untuk menampilkan waktu terbaik
+    public TMP_Text livesLeftText;  // Untuk menampilkan jumlah nyawa tersisa
 
     private float timer = 0f;        // Waktu berjalan
     private bool isRunning = false; // Status timer
-    private float bestTime = Mathf.Infinity; // Waktu terbaik, dimulai dari nilai besar
+    private float bestTime = Mathf.Infinity; // Waktu terbaik
     public float startDelay = 3f;   // Waktu delay sebelum timer dimulai
+
+    public GameManager gameManager; // Referensi ke GameManager
 
     void Start()
     {
@@ -20,6 +23,9 @@ public class ScoreTimer : MonoBehaviour
             bestTime = PlayerPrefs.GetFloat("BestTime");
             UpdateBestTimeUI();
         }
+
+        // Perbarui jumlah nyawa pada UI
+        UpdateLivesLeftUI();
     }
 
     void Update()
@@ -30,6 +36,9 @@ public class ScoreTimer : MonoBehaviour
             timer += Time.deltaTime;
             UpdateCurrentTimeUI();
         }
+
+        // Perbarui nyawa secara real-time
+        UpdateLivesLeftUI();
     }
 
     public void StartTimer()
@@ -49,7 +58,7 @@ public class ScoreTimer : MonoBehaviour
 
         isRunning = false;
 
-        // Periksa apakah skor saat ini lebih baik (lebih pendek) daripada best time
+        // Periksa apakah skor saat ini lebih baik (lebih kecil) daripada best time
         if (timer < bestTime)
         {
             bestTime = timer;
@@ -75,5 +84,21 @@ public class ScoreTimer : MonoBehaviour
     {
         // Tampilkan waktu terbaik (format: detik dengan 2 desimal)
         bestTimeText.text = $"Best Time: {bestTime:F2} s";
+    }
+
+    private void UpdateLivesLeftUI()
+    {
+        if (gameManager != null)
+        {
+            // Ambil jumlah nyawa dari GameManager
+            int currentLives = gameManager.GetCurrentLives();
+
+            // Perbarui teks nyawa tersisa pada UI
+            livesLeftText.text = $"Lives: {currentLives}";
+        }
+        else
+        {
+            Debug.LogError("GameManager belum dihubungkan di Inspector!");
+        }
     }
 }
