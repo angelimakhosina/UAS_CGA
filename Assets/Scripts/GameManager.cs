@@ -61,18 +61,17 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Game Over! Tidak ada nyawa tersisa.");
         Time.timeScale = 0; // Pause game
-        scoreTimer.StopTimer(); // Hentikan timer
-
+        Debug.Log("tampilan gameover muncul ges.");
         if (gameOverText != null) gameOverText.gameObject.SetActive(true);
         if (backToMenuButton != null) backToMenuButton.SetActive(true);
+        scoreTimer.StopTimer(); // Hentikan timer
+
     }
 
     private void GameWon()
 {
     Debug.Log("Memanggil GameWon(). Semua katak telah mencapai garis finish!");
     Time.timeScale = 0; // Pause the game
-    scoreTimer.StopTimer(); // Hentikan timer
-
     if (gameWonText == null)
     {
         Debug.LogError("GameWonText tidak ditemukan! Pastikan dihubungkan di Inspector.");
@@ -93,6 +92,8 @@ public class GameManager : MonoBehaviour
     {
         backToMenuButton.SetActive(true);
     }
+    scoreTimer.StopTimer(); // Hentikan timer
+
 }
 
 
