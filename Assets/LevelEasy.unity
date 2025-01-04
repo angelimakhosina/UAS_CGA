@@ -1108,7 +1108,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6384559249789400005, guid: 483ed8525db629840a8265dd8d444791, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6384559249789400005, guid: 483ed8525db629840a8265dd8d444791, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2449,7 +2454,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6384559249789400005, guid: 483ed8525db629840a8265dd8d444791, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6384559249789400005, guid: 483ed8525db629840a8265dd8d444791, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -8519,6 +8529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 195bfe26f55805a43a024136de6794bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boundaryX: 20
 --- !u!54 &1612567942
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8669,6 +8680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 195bfe26f55805a43a024136de6794bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boundaryX: 20
 --- !u!114 &1614873799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8768,7 +8780,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6384559249789400005, guid: 483ed8525db629840a8265dd8d444791, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6384559249789400005, guid: 483ed8525db629840a8265dd8d444791, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10198,7 +10215,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6384559249789400005, guid: 483ed8525db629840a8265dd8d444791, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6384559249789400005, guid: 483ed8525db629840a8265dd8d444791, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
