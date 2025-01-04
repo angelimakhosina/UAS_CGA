@@ -1,10 +1,13 @@
 using UnityEngine;
-using System.Collections; 
+using System.Collections;
 
 public class FrogCollisionHard : MonoBehaviour
 {
     private Vector3 initialPosition;
     private GameManagerHard gameManagerHard;
+
+    [SerializeField]
+    private float boundaryX = 20f; 
 
     void Start()
     {
@@ -17,6 +20,15 @@ public class FrogCollisionHard : MonoBehaviour
         if (gameManagerHard == null)
         {
             Debug.LogError("GameManagerHard tidak ditemukan di scene!");
+        }
+    }
+
+    void Update()
+    {
+        // Periksa apakah posisi x melewati batas
+        if (Mathf.Abs(transform.position.x) > boundaryX)
+        {
+            HandleDeath();
         }
     }
 
