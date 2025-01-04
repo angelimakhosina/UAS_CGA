@@ -1430,7 +1430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalFrogs: 2
-  maxLives: 3
+  maxLives: 20
   scoreTimerHard: {fileID: 30332308}
   gameOverText: {fileID: 798154745}
   gameWonText: {fileID: 351772795}
@@ -6507,7 +6507,7 @@ GameObject:
   - component: {fileID: 922054112}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: FinishLine1
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10046,7 +10046,7 @@ GameObject:
   - component: {fileID: 1579071812}
   m_Layer: 0
   m_Name: Wall (1)
-  m_TagString: FinishLine1
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

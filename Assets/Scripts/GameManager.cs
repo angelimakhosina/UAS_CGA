@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     private int frogsFinished = 0; // Counter untuk katak yang mencapai garis finish
     public int totalFrogs = 2; // Total jumlah katak
 
-    public int maxLives = 30; // Jumlah nyawa awal
+    public int maxLives = 20; // Jumlah nyawa awal
     private int currentLives; // Nyawa tersisa
 
     public ScoreTimer scoreTimer; // Referensi ke skrip ScoreTimer
