@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement; // Untuk fungsi SceneManager
 using TMPro; // Untuk TMP_Text
 
-public class GameManager : MonoBehaviour
+public class GameManagerHard : MonoBehaviour
 {
     private int frogsFinished = 0; // Counter untuk katak yang mencapai garis finish
     public int totalFrogs = 2; // Total jumlah katak
@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public int maxLives = 30; // Jumlah nyawa awal
     private int currentLives; // Nyawa tersisa
 
-    public ScoreTimer scoreTimer; // Referensi ke skrip ScoreTimer
+    public ScoreTimerHard scoreTimerHard; // Referensi ke skrip ScoreTimer
 
     public TMP_Text gameOverText; // Referensi ke teks Game Over
     public TMP_Text gameWonText;  // Referensi ke teks Game Won
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;  // Pastikan waktu berjalan normal
         Debug.Log("Menunggu 3 detik sebelum game dimulai...");
         yield return new WaitForSeconds(3f); // Tunggu 3 detik
-        scoreTimer.StartTimer();  // Mulai timer setelah delay
+        scoreTimerHard.StartTimer();  // Mulai timer setelah delay
         Debug.Log("Game dimulai setelah 3 detik!");
     }
 
@@ -83,9 +83,9 @@ public class GameManager : MonoBehaviour
         }
 
         // Hentikan timer dan periksa best time
-        if (scoreTimer != null)
+        if (scoreTimerHard != null)
         {
-            scoreTimer.StopTimer(); // Stop dan simpan best time jika lebih baik
+            scoreTimerHard.StopTimer(); // Stop dan simpan best time jika lebih baik
         }
         else
         {
