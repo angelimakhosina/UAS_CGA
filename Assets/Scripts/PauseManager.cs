@@ -6,11 +6,11 @@ public class PauseManager : MonoBehaviour
     public GameObject pausePanel;  // Panel yang berisi tombol Resume dan Back to Menu
     public GameObject pauseButton; // Tombol Pause yang ada di UI utama
 
-    void Start()
-    {
-        // Pastikan panel pause disembunyikan saat game dimulai
-        pausePanel.SetActive(false);
-    }
+    // void Start()
+    // {
+    //     // Pastikan panel pause disembunyikan saat game dimulai
+    //     pausePanel.SetActive(false);
+    // }
 
     // Fungsi untuk mengaktifkan menu pause
     public void PauseGame()
@@ -32,6 +32,6 @@ public class PauseManager : MonoBehaviour
     public void BackToMenu()
     {
         Time.timeScale = 1f;  // Pastikan waktu berjalan normal
-        SceneManager.LoadScene("MainMenu");  // Ganti dengan nama scene menu utama
+        SceneManager.LoadScene("Game");  // Ganti dengan nama scene menu utama
     }
 }
