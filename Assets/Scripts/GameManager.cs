@@ -5,10 +5,10 @@ using TMPro; // Untuk TMP_Text
 
 public class GameManager : MonoBehaviour
 {
-    private int frogsFinished = 0; // Counter for frogs that finished the game
-    public int totalFrogs = 2; // Total number of frogs
+    private int frogsFinished = 0; // Counter untuk katak yang mencapai garis finish
+    public int totalFrogs = 2; // Total jumlah katak
 
-    public int maxLives = 3; // Jumlah nyawa awal
+    public int maxLives = 30; // Jumlah nyawa awal
     private int currentLives; // Nyawa tersisa
 
     public ScoreTimer scoreTimer; // Referensi ke skrip ScoreTimer
@@ -20,20 +20,15 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         currentLives = maxLives; // Inisialisasi nyawa
-        // Panggil coroutine untuk memulai game setelah 3 detik
         StartCoroutine(StartGameWithDelay());
     }
 
     // Coroutine untuk menunda game selama 3 detik
     IEnumerator StartGameWithDelay()
     {
-        // Pastikan Time.timeScale 1 sebelum menunggu
         Time.timeScale = 1;  // Pastikan waktu berjalan normal
-
         Debug.Log("Menunggu 3 detik sebelum game dimulai...");
         yield return new WaitForSeconds(3f); // Tunggu 3 detik
-
-        // Setelah 3 detik, game bisa dimulai
         scoreTimer.StartTimer();  // Mulai timer setelah delay
         Debug.Log("Game dimulai setelah 3 detik!");
     }
@@ -42,7 +37,7 @@ public class GameManager : MonoBehaviour
     {
         frogsFinished++;
 
-        // Check if all frogs have finished
+        // Cek apakah semua katak telah selesai
         if (frogsFinished >= totalFrogs)
         {
             GameWon();
@@ -55,7 +50,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log($"Nyawa tersisa: {currentLives}");
 
-        // Check if lives are depleted
+        // Cek apakah nyawa habis
         if (currentLives <= 0)
         {
             GameOver();
@@ -65,22 +60,41 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         Debug.Log("Game Over! Tidak ada nyawa tersisa.");
-        Time.timeScale = 0; // Pause the game
-        scoreTimer.StopTimer(); // Hentikan timer saat game over
+        Time.timeScale = 0; // Pause game
+        scoreTimer.StopTimer(); // Hentikan timer
 
         if (gameOverText != null) gameOverText.gameObject.SetActive(true);
         if (backToMenuButton != null) backToMenuButton.SetActive(true);
     }
 
     private void GameWon()
+{
+    Debug.Log("Memanggil GameWon(). Semua katak telah mencapai garis finish!");
+    Time.timeScale = 0; // Pause the game
+    scoreTimer.StopTimer(); // Hentikan timer
+
+    if (gameWonText == null)
     {
-        Debug.Log("Semua katak telah mencapai garis finish! Game selesai.");
-        Time.timeScale = 0; // Pause the game
-        scoreTimer.StopTimer(); // Hentikan timer dan simpan skor
-    
-        if (gameWonText != null) gameWonText.gameObject.SetActive(true);
-        if (backToMenuButton != null) backToMenuButton.SetActive(true);
+        Debug.LogError("GameWonText tidak ditemukan! Pastikan dihubungkan di Inspector.");
+        return;
     }
+
+    if (!gameWonText.gameObject.activeInHierarchy)
+    {
+        Debug.Log("GameWonText saat ini tidak aktif di Hierarchy. Mengaktifkannya sekarang...");
+        gameWonText.gameObject.SetActive(true); // Aktifkan GameObject
+    }
+    else
+    {
+        Debug.Log("GameWonText sudah aktif.");
+    }
+
+    if (backToMenuButton != null)
+    {
+        backToMenuButton.SetActive(true);
+    }
+}
+
 
     public void BackToMenu()
     {
