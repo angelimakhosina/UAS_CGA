@@ -20,19 +20,6 @@ public class ScoreTimer : MonoBehaviour
             bestTime = PlayerPrefs.GetFloat("BestTime");
             UpdateBestTimeUI();
         }
-
-        // Mulai timer setelah delay
-        StartCoroutine(StartTimerWithDelay());
-    }
-
-    IEnumerator StartTimerWithDelay()
-    {
-        // Tampilkan pesan atau animasi jika diperlukan saat delay
-        currentTimeText.text = "Starting in 3 seconds...";
-        yield return new WaitForSeconds(startDelay);
-
-        // Mulai timer setelah delay
-        StartTimer();
     }
 
     void Update()
@@ -54,6 +41,12 @@ public class ScoreTimer : MonoBehaviour
 
     public void StopTimer()
     {
+        if (!isRunning)
+        {
+            Debug.Log("Timer sudah berhenti sebelumnya.");
+            return; // Timer sudah berhenti, tidak perlu melakukan apa-apa
+        }
+
         isRunning = false;
 
         // Periksa apakah skor saat ini lebih baik (lebih pendek) daripada best time
@@ -68,6 +61,8 @@ public class ScoreTimer : MonoBehaviour
             // Perbarui UI waktu terbaik
             UpdateBestTimeUI();
         }
+
+        Debug.Log($"Timer dihentikan. Waktu akhir: {timer:F2} detik");
     }
 
     private void UpdateCurrentTimeUI()
