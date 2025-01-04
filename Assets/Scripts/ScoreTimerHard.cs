@@ -94,7 +94,7 @@ public class ScoreTimerHard : MonoBehaviour
             int currentLives = gameManagerHard.GetCurrentLives();
 
             // Perbarui teks nyawa tersisa pada UI
-            livesLeftTextHard.text = $"Lives Left: {currentLives}";
+            livesLeftTextHard.text = $"Lives: {currentLives}";
         }
         else
         {
